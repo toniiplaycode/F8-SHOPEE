@@ -1,0 +1,160 @@
+/* mobile & tablet */
+@media (max-width: 1023px){
+    :root{
+        /* tính lại chiều cao của header-with-search khi ẩn navbar */
+        --header-height: 78px; /* cho chiều cao header thấp lại */
+        --navbar-height: 0px;
+        /* -> 78px - 0px = 78px (chiều cao bằng với header) */
+    }
+
+    .hide-on-mobile-tablet{
+        display: none;
+    }
+
+    .show-on-mobile-table{
+        display: block;
+    }
+
+    .header{
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10; /* cho số lớn lớn để không bị thằng khác đè lên */
+    }
+
+    .header__cart-list{
+        position: fixed !important;
+        top: var(--header-height);
+        right: 0;
+        width: 100%;
+        /* padding vào 2 bên trái phải cho người dùng dễ bấm, hàm calc lấy 100% kích thước trừ 644px(kích thước của tablet sau đó chia 2) */
+        padding: 0 calc((100% - 644px) / 2);
+    }
+    .header__cart-list-item{
+        max-height: 30vh;  /* chiều cao tối đa trên mobile và tablet là 30% theo trình duyệt, dùng max-hight để khi sản phẩm ít đi thì tự động nó sẽ ngắn lại theo sản phẩm */
+        overflow-y: auto;
+    }
+    /* ẩn đi arrow cart */
+    .header__cart-list::after{
+        display: none;
+    }
+    .app__container{
+        margin-top: calc(var(--header-height) + var(--header-sort-bar-height)); /* margin-top bằng với chiều cao của header + sort-bar (nếu có)*/
+    }
+    .header__sort-bar{
+        /* dùng display: flex hiện lên để nó không bị vỡ giao diện */
+        display: flex;
+    }
+
+    .app__content{
+        padding-top: 10px;
+    }
+
+    .mobile-category{
+        display: block;
+    }
+}
+
+/* tablet */
+@media (min-width: 740px) and (max-width: 1023px){
+    .hide-on-tablet{
+        display: none;
+    }
+
+    .show-on-table{
+        display: block;
+    }
+
+    .header__cart{
+        width: 80px;
+        text-align: right;
+    }
+}
+
+/* mobile */
+@media (max-width: 739px){
+    :root{
+        /* tính lại chiều cao của header-with-search khi ẩn navbar */
+        --header-height: 60px; /* cho chiều cao header thấp lại */
+        --navbar-height: 0px;
+        /* -> 60px - 0px = 60px (chiều cao bằng với header) */
+    }
+    .hide-on-mobile{
+        display: none;
+    }
+
+    .show-on-mobile{
+        display: block;
+    }
+
+    .header-with-search{
+        justify-content: space-between;
+        flex: 1;
+        margin: 0 22px;
+    }
+
+    .header__cart,
+    .header__logo{
+        /* bỏ đi width của logo và cart */
+        width: unset;
+    }
+
+    .header__logo-img{
+        width: 120px;
+    }
+
+    .header__search{
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        right: 0;
+        height: 46px;
+        box-shadow: 0 1px 2px lightgray;
+        animation: mobileSearchSideIn linear 0.3s;
+        display: none;
+    }
+    @keyframes mobileSearchSideIn {
+        from{
+            opacity: 0;
+            top: calc(var(--header-height) / 2);
+        }
+        to{
+            opacity: 1;
+            top: calc(var(--header-height));
+        }
+    }
+
+    .header__mobile-search{
+        display: block;
+    }
+
+    .app__content{
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    /* panination nhỏ lại để không bị tràn giao diện */
+    .pagination-item{
+        margin: 0 6px;
+    }
+
+    /* panination nhỏ lại để không bị tràn giao diện */
+    .pagination-item__link{
+        --height: 26px;
+        min-width: 16px;
+        font-size: 1.4rem;
+    }
+
+    .footer__heading{
+        text-align: center;
+    }
+
+    .footer-list{
+        text-align: center;
+    }
+
+    .footer__download{
+        justify-content: center;
+    }
+}
